@@ -17,9 +17,11 @@
 				<li><a class="nav-item" href="shop.jsp">店面展示</a></li>
 				<li><a class="nav-item nav-active" href="news.jsp">新闻资讯</a></li>
 				<li><a class="nav-item" href="about-us.jsp">关于我们</a></li>
+				<%--注册登录/用户信息--%>
+				<jsp:include page="base/userBase.jsp"></jsp:include>
 			</ul>
 		</div>
-		
+
 		<div id="container">
 			<div id="buttons">
 		        <span index="1" class="on"></span>
@@ -143,36 +145,9 @@
 				<li><a href="javascript:;" class="pag-item">&gt;</a></li>
 			</ul>
 		</div>
-		<div class="foot">
-			<div class="foot-wrap">
-				<p class="foot-tit">友情链接</p>
-				<ul class="foot-link clearfix">
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link6.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link5.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link4.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link3.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link2.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link1.png"/></a>
-					</li>
-				</ul>
-				<div class="copyright">
-					<p>CopyRight©2003-2015 www.91cy.cn All rigt rederved</p>
-					<p>版权所有：贵族食代牛排有限公司  来源:<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
-					<p>ICP备案号：京ICP备16047255号-3本站信息由会员自主添加，如信息涉及隐私等，网站不承担任何责任！</p>
-				</div>
-			</div>
-		</div>
+
+		<%--调用封装的foot页面--%>
+		<jsp:include page="base/footBase.jsp"></jsp:include>
 		
 	</body>
 	<!--jq调用-->

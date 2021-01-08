@@ -4,8 +4,10 @@ html{
 	min-width: 1280px;
 }
 .nav{
-	width: 1080px;
+	/*width: 1080px;*/
+	width: 1300px;
 	margin: 0 auto;
+	/*margin: 0 0 0 65px;*/
 }
 .logo{
 	display: block;
@@ -14,9 +16,12 @@ html{
 	height: 80px;
 	float: left;
 	padding: 4px;
+	margin-left: 41px;
 }
 .nav-wrap{
-	float: right;
+	/*float: right;*/
+	float: left;
+	margin-left: 45px;
 }
 .nav-wrap>li,.nav-item{
 	float: left;
@@ -34,6 +39,122 @@ html{
 	background-color: #533336;
 	color: #FFFFFF;
 }
+
+/*登录注册*/
+i.user{
+	width:30px;
+	height:27px;
+	background: url('../img/img-sprite.png') no-repeat 0px 2px;
+	display:inline-block;
+	cursor:pointer;
+	vertical-align:bottom;
+}
+
+#user {
+	margin-left: 30px;
+}
+
+#login:hover {
+	color: #9c4c52;
+	text-decoration: underline;
+}
+
+#register:hover {
+	color: #9c4c52;
+	text-decoration: underline;
+}
+
+.manage {
+	padding: 20px;
+	overflow: hidden;
+}
+
+.manage form {
+	margin: 0 auto;
+	padding: 30px;
+	width: 500px;
+	border-radius: 12px;
+	background-color: #533336;
+	color: #FFFFFF;
+}
+
+/*.manage .form {
+	margin: 0 auto;
+	width: 500px;
+	border-radius: 12px;
+	background-color: #533336;
+	color: #FFFFFF;
+}*/
+
+.manage .form td {
+	padding: 8px 2px;
+	color: #FFFFFF;
+}
+
+.manage .form td.field {
+	width: 150px;
+	text-align: right;
+}
+
+.manage .form td input.user_input {
+	width: 200px;
+	border: 1px solid #ccc;
+	/*padding-left: 20px;*/
+	padding: 4px 4px 4px 12px;
+	border-radius: 5px;
+	vertical-align: middle;
+}
+
+.manage .form td input.tiny {
+	width: 50px;
+}
+
+.manage .form .user_input::-webkit-input-placeholder {
+	/* placeholder颜色  */
+	color: rgba(13, 16, 15, 0.66);
+	/* placeholder字体大小  */
+	font-size: 10px;
+	/* placeholder位置  */
+	/*padding-left: 15px;*/
+}
+
+.manage .form td textarea {
+	width: 400px;
+	border: 1px solid #ccc;
+	padding: 4px;
+	height: 80px;
+}
+
+.manage .shadow {
+	width: 500px;
+	margin: 50px auto;
+}
+
+.manage form .user_submit {
+	/*margin: 15px 0 0 145px;*/
+	margin-top: 10px;
+	margin-left: 20px;
+	padding: 0;
+	width: 150px;
+	height: 30px;
+	font-size: 15px;
+	background-color: #FFFFFF;
+	color: black;
+	border-radius: 5px;
+}
+
+.manage form .user_submit:hover {
+	background-color: #92ff8a;
+	color: black;
+}
+
+.manage form #canvas {
+	margin-left: 50px;
+}
+
+
+
+
 /*banner*/
 #container { 
 	border-top: 10px solid #533336;
