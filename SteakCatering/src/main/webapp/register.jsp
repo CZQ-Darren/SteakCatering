@@ -39,32 +39,32 @@
 		<div class="new-wrap">
 			<p class="newfood-tit">用户注册</p>
 			<div class="manage">
-				<form action="#" method="post" enctype="multipart/form-data">
+				<form action="${pageContext.request.contextPath}/addUser.su" method="post" enctype="multipart/form-data" onsubmit="return registerVerify();">
 					<table class="form">
 						<tr>
 							<td class="field">用户名：</td>
-							<td><input class="user_input" type="text" name="userName" placeholder="请输入用户名"></td>
-							<td><span></span></td>
+							<td><input class="user_input" type="text" id="userName" name="userName" placeholder="请输入用户名" onchange="userNameVerify()"></td>
+							<td><span id="userNameErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field">密码：</td>
-							<td><input class="user_input" type="password" name="pwd" placeholder="请输入密码"></td>
-							<td><span></span></td>
+							<td><input class="user_input" type="password" id="pwd" name="pwd" placeholder="请输入密码" onchange="pwdVerify()"></td>
+							<td><span id="pwdErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field">确认密码：</td>
-							<td><input class="user_input" type="password" name="rePwd" placeholder="请输入确认密码"></td>
-							<td><span></span></td>
+							<td><input class="user_input" type="password" id="rePwd" name="rePwd" placeholder="请输入确认密码" onchange="rePwdVerify()"></td>
+							<td><span id="rePwdErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field">邮箱：</td>
-							<td><input class="user_input" type="email" name="email" placeholder="请输入邮箱"></td>
-							<td><span></span></td>
+							<td><input class="user_input" type="text" id="email" name="email" placeholder="请输入邮箱" onchange="emailVerify()"></td>
+							<td><span id="emailErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field">手机：</td>
-							<td><input class="user_input" type="text" name="mobile" placeholder="请输入手机号"></td>
-							<td><span></span></td>
+							<td><input class="user_input" type="text" id="mobile" name="mobile" placeholder="请输入手机号" onchange="mobileVerify()"></td>
+							<td><span id="mobileErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field">性别：</td>
@@ -75,16 +75,18 @@
 						</tr>
 						<tr>
 							<td class="field">出生日期：</td>
-							<td><input class="user_input" type="text" name="birthday" placeholder="请选择出生日期" onClick="WdatePicker()"></td>
+							<td><input class="user_input" type="text" id="birthday" name="birthday" placeholder="请选择出生日期" onClick="WdatePicker()" onchange="birthdayVerify()"></td>
+							<td><span id="birthdayErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field">头像：</td>
-							<td><input type="file" class="user_input" name="img"></td>
+							<td><input type="file" class="user_input" id="img" name="img" onchange="imgVerify()"></td>
+							<td><span id="imgErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field">验证码：</td>
-							<td><input type="text" id="authCode" name="authCode" placeholder="请输入验证码" class="user_input" /></td>
-							<td><span></span></td>
+							<td><input type="text" id="authCode" name="authCode" placeholder="请输入验证码" class="user_input input-val" onchange="checkCode()" /></td>
+							<td><span id="authCodeErr"></span></td>
 						</tr>
 						<tr>
 							<td class="field"></td>
@@ -92,7 +94,7 @@
 						</tr>
 						<tr>
 							<td class="field"></td>
-							<td><input type="submit" id="userSubmit" class="user_submit" value="注册"></td>
+							<td><input type="submit" id="registerSubmit" class="user_submit" value="注册"></td>
 						</tr>
 					</table>
 				</form>
@@ -108,5 +110,7 @@
 	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js" type="text/javascript"></script>
 	<%--验证码js文件--%>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/authCode.js"></script>
+	<%--form表单验证js文件--%>
+	<script src="${pageContext.request.contextPath}/js/register.js"></script>
 
 </html>

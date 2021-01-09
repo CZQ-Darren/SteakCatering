@@ -152,6 +152,19 @@ i.user{
 	margin-left: 50px;
 }
 
+.manage form table td span {
+	margin-left: 5px;
+	font-size: 15px;
+}
+
+/*验证成功*/
+/*.verifySuccess {
+	color: #00e200;
+}*/
+/*验证失败*/
+/*.verifyFail {
+	color: red;
+}*/
 
 
 

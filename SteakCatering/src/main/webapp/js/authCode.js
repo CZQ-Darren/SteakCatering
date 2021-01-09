@@ -7,7 +7,7 @@ $(function () {
         draw(show_num);
     })
 
-    $("#userSubmit").click(function () {
+    $("#registerSubmit").click(function () {
         checkCode(); //数据提交前先检查验证码是否填写正确
     })
 })
@@ -65,20 +65,29 @@ function randomColor() {//得到随机的颜色值
 
 
 function checkCode() {
+    // 用来检验不能为空
+    var regNull = /\S/;
+
     var val = $("#authCode").val().toLowerCase();
     var num = show_num.join("");
 
-    if (val == "") {
-        alert("请输入验证码");
+    // 验证码提示
+    if (!regNull.test(val)) {
+        $("#authCodeErr").html("× 验证码不能为空");
+        $("#authCodeErr").css("color", "red");
         return false;
     } else if (val != num) {
-        alert('验证码错误！请重新输入！');
+        $("#authCodeErr").html("× 验证码错误");
+        $("#authCodeErr").css("color", "red");
         $(".input-val").val('');
         setTimeout(function () {
             draw(show_num);
         }, 1000)
-
         return false;
+    } else {
+        $("#authCodeErr").html("√ 验证码正确");
+        $("#authCodeErr").css("color", "#00e200");
     }
+
     return true;
 }
