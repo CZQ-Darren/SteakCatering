@@ -37,4 +37,12 @@ public interface UserDao {
      */
     public User findUserByMobile(String mobile);
 
+    /**
+     * 登录验证
+     * @param userName 用户名
+     * @param pwd 密码
+     * @return  true登录成功，false登录失败
+     */
+    public Boolean login(String userName, String pwd);
+
 }

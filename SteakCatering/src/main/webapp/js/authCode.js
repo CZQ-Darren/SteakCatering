@@ -10,6 +10,10 @@ $(function () {
     $("#registerSubmit").click(function () {
         checkCode(); //数据提交前先检查验证码是否填写正确
     })
+
+    $("#loginSubmit").click(function () {
+        checkCode(); //数据提交前先检查验证码是否填写正确
+    })
 })
 
 function draw(show_num) {

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -44,6 +45,8 @@ public class UserAction extends HttpServlet {
         String findUserByNameUrl = "findUserByName";
         String findUserByEmailUrl = "findUserByEmail";
         String findUserByMobileUrl = "findUserByMobile";
+        String loginUrl = "login";
+        String clearLoginUrl = "clearLogin";
 
         // 获取uri
         String uri = req.getRequestURI();
@@ -102,6 +105,10 @@ public class UserAction extends HttpServlet {
             req.getRequestDispatcher("/result/addUser_result.jsp").forward(req, resp);
 
         }else if (findUserByNameUrl.equals(url)){
+            /**
+             * 注册时用户名验证
+             */
+
             // 获取userName
             String userName = req.getParameter("userName");
 
@@ -118,6 +125,10 @@ public class UserAction extends HttpServlet {
             }
 
         }else if (findUserByEmailUrl.equals(url)){
+            /**
+             * 注册时邮箱验证
+             */
+
             // 获取email
             String email = req.getParameter("email");
 
@@ -134,6 +145,10 @@ public class UserAction extends HttpServlet {
             }
 
         }else if (findUserByMobileUrl.equals(url)){
+            /**
+             * 注册时手机号验证
+             */
+
             // 获取mobile
             String mobile = req.getParameter("mobile");
 
@@ -148,6 +163,46 @@ public class UserAction extends HttpServlet {
                 // mobile已存在
                 out.println("1");
             }
+
+        }else if (loginUrl.equals(url)){
+            /**
+             * 登录验证
+             */
+
+            // 获取用户名
+            String userName = req.getParameter("userName");
+            // 获取密码并加密
+            String pwd = MD5Util.stringMD5(req.getParameter("pwd"));
+
+            // 登录验证
+            Boolean login = userService.login(userName, pwd);
+
+            // 存入req对象中
+            req.setAttribute("login", login);
+
+            // 如果登录成功，把用户名存入session中，登录失败存入null
+            if (login){
+                // 存入session对象中
+                req.getSession().setAttribute("userName", userName);
+            }else {
+                // 存入session对象中
+                req.getSession().setAttribute("userName", null);
+            }
+
+            // 转发
+            req.getRequestDispatcher("/result/login_result.jsp").forward(req, resp);
+
+        }else if (clearLoginUrl.equals(url)){
+            /**
+             * 退出登录
+             */
+
+            // 设置session中的userName为null
+            req.getSession().setAttribute("userName", null);
+
+            // 重定向
+            String path = req.getContextPath();
+            resp.sendRedirect(path + "/index.jsp");
 
         }
 
