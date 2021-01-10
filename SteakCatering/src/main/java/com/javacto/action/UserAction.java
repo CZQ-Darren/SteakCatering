@@ -175,18 +175,22 @@ public class UserAction extends HttpServlet {
             String pwd = MD5Util.stringMD5(req.getParameter("pwd"));
 
             // 登录验证
-            Boolean login = userService.login(userName, pwd);
+            User login = userService.login(userName, pwd);
 
             // 存入req对象中
             req.setAttribute("login", login);
 
             // 如果登录成功，把用户名存入session中，登录失败存入null
-            if (login){
+            if (login!=null){
                 // 存入session对象中
                 req.getSession().setAttribute("userName", userName);
+                // 获取头像名
+                String img = login.getSuImg();
+                req.getSession().setAttribute("img", img);
             }else {
                 // 存入session对象中
                 req.getSession().setAttribute("userName", null);
+                req.getSession().setAttribute("img", null);
             }
 
             // 转发

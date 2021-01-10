@@ -9,10 +9,14 @@
 </head>
 <body>
 
-    <%--获取用户名，存入request对象中--%>
     <%
+        // 获取用户名，存入request对象中
         Object userName = request.getSession().getAttribute("userName");
         request.setAttribute("userName", userName);
+
+        // 获取头像名，存入request对象中
+        Object img = request.getSession().getAttribute("img");
+        request.setAttribute("img", img);
     %>
 
     <%--还没登陆--%>
@@ -27,8 +31,15 @@
     <%--已经登录了--%>
     <c:if test="${!flag}">
         <div id="user" class="dropdown">
+<%--            <i class="user" ></i>--%>
+            <c:if test="${img!=null}" var="flag2">
+                <img src="${pageContext.request.contextPath}/upload/${img}" width="30px" height="30px" class="round_icon">
+            </c:if>
+            <c:if test="${!flag2}">
+                <img src="${pageContext.request.contextPath}/img/link6.png" width="30px" height="30px" class="round_icon">
+            </c:if>
+
             <span onclick="user()" class="dropbtn">
-                <i class="user"></i>
                 <span>${userName}</span> ∨
             </span>
             <span id="myDropdown" class="dropdown-content">

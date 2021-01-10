@@ -157,7 +157,31 @@ i.user{
 	font-size: 15px;
 }
 
+/*登录后头像*/
+.round_icon{
+	margin-top: 8px;
+	margin-left: 20px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	display: inline-block;
+	cursor:pointer;
+	vertical-align:bottom;
+}
+
+.dropbtn {
+	font-size: 18px;
+	line-height: 30px;
+}
+
 /*用户下拉菜单*/
+.dropbtn:hover, .dropbtn:focus {
+	background-color: #869a8f;
+}
+
 .dropdown {
 	position: relative;
 	display: inline-block;

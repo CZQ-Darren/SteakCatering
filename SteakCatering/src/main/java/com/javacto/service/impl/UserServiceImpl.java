@@ -60,10 +60,10 @@ public class UserServiceImpl implements UserService {
      * 登录验证
      * @param userName 用户名
      * @param pwd 密码
-     * @return  true登录成功，false登录失败
+     * @return  user对象
      */
     @Override
-    public Boolean login(String userName, String pwd){
+    public User login(String userName, String pwd){
         return userDao.login(userName, pwd);
     }
 
