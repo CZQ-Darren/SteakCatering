@@ -20,17 +20,19 @@
 				<li><a class="nav-item" href="${pageContext.request.contextPath}/shop.jsp">店面展示</a></li>
 				<li><a class="nav-item" href="${pageContext.request.contextPath}/news.jsp">新闻资讯</a></li>
 				<li><a class="nav-item" href="${pageContext.request.contextPath}/about-us.jsp">关于我们</a></li>
+				<%--注册登录/用户信息--%>
+				<jsp:include page="base/userBase.jsp"></jsp:include>
 			</ul>
 		</div>
-		
+
 		<div id="container">
 			<div id="buttons">
-		        <span index="1" class="on"></span>
-		        <span index="2"></span>
-		        <span index="3"></span>
-		    </div>
-		    <a href="javascript:;" id="prev" class="arrow"><img src="${pageContext.request.contextPath}/img/l.png"/></a>
-		    <a href="javascript:;" id="next" class="arrow"><img src="${pageContext.request.contextPath}/img/r.png"/></a>
+				<span index="1" class="on"></span>
+				<span index="2"></span>
+				<span index="3"></span>
+			</div>
+			<a href="javascript:;" id="prev" class="arrow"><img src="${pageContext.request.contextPath}/img/l.png"/></a>
+			<a href="javascript:;" id="next" class="arrow"><img src="${pageContext.request.contextPath}/img/r.png"/></a>
 		</div>
 		
 		<div class="new-wrap">
@@ -176,40 +178,13 @@
 				</dd>
 			</dl>
 		</div>
-		<div class="foot">
-			<div class="foot-wrap">
-				<p class="foot-tit">友情链接</p>
-				<ul class="foot-link clearfix">
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link6.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link5.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link4.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link3.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link2.png"/></a>
-					</li>
-					<li class="foot-pic">
-						<a href="javascript:;"><img src="${pageContext.request.contextPath}/img/link1.png"/></a>
-					</li>
-				</ul>
-				<div class="copyright">
-					<p>CopyRight©2003-2015 www.91cy.cn All rigt rederved</p>
-					<p>版权所有：贵族食代牛排有限公司</p>
-					<p>ICP备案号：京ICP备16047255号-3本站信息由会员自主添加，如信息涉及隐私等，网站不承担任何责任！</p>
-				</div>
-			</div>
-		</div>
+
+		<%--调用封装的foot页面--%>
+		<jsp:include page="base/footBase.jsp"></jsp:include>
 		
 	</body>
 	<!--jq调用-->
-	<script src="${pageContext.request.contextPath}/img/jquery-1.11.0.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery-1.11.0.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
 		//导航当前项切换	
