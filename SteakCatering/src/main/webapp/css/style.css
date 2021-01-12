@@ -157,7 +157,31 @@ i.user{
 	font-size: 15px;
 }
 
+/*登录后头像*/
+.round_icon{
+	margin-top: 8px;
+	margin-left: 20px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	display: inline-block;
+	cursor:pointer;
+	vertical-align:bottom;
+}
+
+.dropbtn {
+	font-size: 18px;
+	line-height: 30px;
+}
+
 /*用户下拉菜单*/
+.dropbtn:hover, .dropbtn:focus {
+	background-color: #869a8f;
+}
+
 .dropdown {
 	position: relative;
 	display: inline-block;
@@ -739,8 +763,8 @@ i.user{
 }
 /*分页*/
 .shop-paging{
-	width: 320px;
-	margin: 50px auto 0;
+	width: 220px;
+	margin: 20px auto 0;
 }
 .pag-item{
 	float: left;
@@ -759,6 +783,17 @@ i.user{
 .shop-paging .pag-active{
 	background-color: #533336;
 	color: #fff;
+}
+.pag {
+	margin: 0 auto;
+	width: 300px;
+}
+.pag-content{
+	margin: 0 10px;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	font-size: 15px;
 }
 
 /**店铺展示-详情**/
@@ -854,9 +889,12 @@ i.user{
 	margin-top: 10px;
 	font-size: 16px;
 }
-.newslist-con{
+.newslist-li {
 	margin-top: 10px;
-	font-size: 14px;
+}
+.newslist-con{
+	/*margin-top: 10px;*/
+	font-size: 15px;
 }
 .newslist-ul .newslist-link{
 	display: block;

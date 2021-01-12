@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%--如果newsList没有数据，跳转到newsPageQuery.sn--%>
+<c:if test="${empty newsList}">
+	<%
+		request.getRequestDispatcher("/newsPageQuery.sn").forward(request, response);
+	%>
+</c:if>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -39,110 +47,58 @@
 		</ul>
 		<div class="newslist-wrap">
 			<p class="newslist-tit">新闻资讯</p>
-			<dl class="newslist-box clearfix">
-				<dt class="newslist-pic">
-					<img src="${pageContext.request.contextPath}/img/news-pic1.jpg"/>
-				</dt>
-				<dd class="newslist-txt">
-					<a href="news-con.jsp" class="newslist-font24">西餐代表 牛排的种类和吃法</a>
-					<ul class="newslist-ul">
-						<li class="newslist-li">
-							<p class="newslist-time">2016.12.25</p>
-						</li>
-						<li class="newslist-li">
-							<a href="news-con.jsp" class="newslist-con">提到牛排，脑子里就会想到焦棕褐色、表面扶着香甜的肉汁，切开后的粉红肉质，入口之后留下的满口肉香。吃牛排其实是非常讲究的，精致的牛肉配上美味的香料，加以烹调，是款待尊贵客人的最佳美食。</a>
-						</li>
-						<li class="newslist-li"><a class="newslist-link" href="news-con.jsp">&lt;阅读全文&gt;</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<span class="news-line">
-				<img src="${pageContext.request.contextPath}/img/news-line.png"/>
-			</span>
-			<dl class="newslist-box clearfix">
-				<dt class="newslist-pic">
-					<img src="${pageContext.request.contextPath}/img/news-pic2.jpg"/>
-				</dt>
-				<dd class="newslist-txt">
-					<a href="news-con.jsp" class="newslist-font24">西餐代表 牛排的种类和吃法</a>
-					<ul class="newslist-ul">
-						<li class="newslist-li">
-							<p class="newslist-time">2016.12.25</p>
-						</li>
-						<li class="newslist-li">
-							<a href="news-con.jsp" class="newslist-con">提到牛排，脑子里就会想到焦棕褐色、表面扶着香甜的肉汁，切开后的粉红肉质，入口之后留下的满口肉香。吃牛排其实是非常讲究的，精致的牛肉配上美味的香料，加以烹调，是款待尊贵客人的最佳美食。</a>
-						</li>
-						<li class="newslist-li"><a class="newslist-link" href="news-con.jsp">&lt;阅读全文&gt;</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<span class="news-line">
-				<img src="${pageContext.request.contextPath}/img/news-line.png"/>
-			</span>
-			<dl class="newslist-box clearfix">
-				<dt class="newslist-pic">
-					<img src="${pageContext.request.contextPath}/img/news-pic3.jpg"/>
-				</dt>
-				<dd class="newslist-txt">
-					<a href="news-con.jsp" class="newslist-font24">西餐代表 牛排的种类和吃法</a>
-					<ul class="newslist-ul">
-						<li class="newslist-li">
-							<p class="newslist-time">2016.12.25</p>
-						</li>
-						<li class="newslist-li">
-							<a href="news-con.jsp" class="newslist-con">提到牛排，脑子里就会想到焦棕褐色、表面扶着香甜的肉汁，切开后的粉红肉质，入口之后留下的满口肉香。吃牛排其实是非常讲究的，精致的牛肉配上美味的香料，加以烹调，是款待尊贵客人的最佳美食。</a>
-						</li>
-						<li class="newslist-li"><a class="newslist-link" href="news-con.jsp">&lt;阅读全文&gt;</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<span class="news-line">
-				<img src="${pageContext.request.contextPath}/img/news-line.png"/>
-			</span>
-			<dl class="newslist-box clearfix">
-				<dt class="newslist-pic">
-					<img src="${pageContext.request.contextPath}/img/news-pic4.jpg"/>
-				</dt>
-				<dd class="newslist-txt">
-					<a href="news-con.jsp" class="newslist-font24">西餐代表 牛排的种类和吃法</a>
-					<ul class="newslist-ul">
-						<li class="newslist-li">
-							<p class="newslist-time">2016.12.25</p>
-						</li>
-						<li class="newslist-li">
-							<a href="news-con.jsp" class="newslist-con">提到牛排，脑子里就会想到焦棕褐色、表面扶着香甜的肉汁，切开后的粉红肉质，入口之后留下的满口肉香。吃牛排其实是非常讲究的，精致的牛肉配上美味的香料，加以烹调，是款待尊贵客人的最佳美食。</a>
-						</li>
-						<li class="newslist-li"><a class="newslist-link" href="news-con.jsp">&lt;阅读全文&gt;</a></li>
-					</ul>
-				</dd>
-			</dl>
-			<span class="news-line">
-				<img src="${pageContext.request.contextPath}/img/news-line.png"/>
-			</span>
-			<dl class="newslist-box clearfix">
-				<dt class="newslist-pic">
-					<img src="${pageContext.request.contextPath}/img/news-pic5.jpg"/>
-				</dt>
-				<dd class="newslist-txt">
-					<a href="news-con.jsp" class="newslist-font24">西餐代表 牛排的种类和吃法</a>
-					<ul class="newslist-ul">
-						<li class="newslist-li">
-							<p class="newslist-time">2016.12.25</p>
-						</li>
-						<li class="newslist-li">
-							<a href="news-con.jsp" class="newslist-con">提到牛排，脑子里就会想到焦棕褐色、表面扶着香甜的肉汁，切开后的粉红肉质，入口之后留下的满口肉香。吃牛排其实是非常讲究的，精致的牛肉配上美味的香料，加以烹调，是款待尊贵客人的最佳美食。</a>
-						</li>
-						<li class="newslist-li"><a class="newslist-link" href="news-con.jsp">&lt;阅读全文&gt;</a></li>
-					</ul>
-				</dd>
-			</dl>
+
+			<%--分页--%>
+			<c:forEach var="news" items="${newsList}">
+				<dl class="newslist-box clearfix">
+					<dt class="newslist-pic">
+						<img src="${pageContext.request.contextPath}/upload/${news.snImg}"/>
+					</dt>
+					<dd class="newslist-txt">
+						<a href="${pageContext.request.contextPath}/newsConQuery.sn?snId=${news.snId}&curPageNo=${pageInfo.curPageNo}" class="newslist-font24">${news.snTitle}</a>
+						<ul class="newslist-ul">
+							<li class="newslist-li">
+								<p class="newslist-time">${news.snCreateTime}</p>
+							</li>
+							<li class="newslist-li">
+								<a href="${pageContext.request.contextPath}/newsConQuery.sn?snId=${news.snId}&curPageNo=${pageInfo.curPageNo}" class="newslist-con">${news.snContent}...</a>
+							</li>
+							<li class="newslist-li"><a class="newslist-link" href="${pageContext.request.contextPath}/newsConQuery.sn?snId=${news.snId}&curPageNo=${pageInfo.curPageNo}">&lt;阅读全文&gt;</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<span class="news-line">
+					<img src="${pageContext.request.contextPath}/img/news-line.png"/>
+				</span>
+			</c:forEach>
+
+			<ul class="pag clearfix">
+				<li class="pag-content">当前第&nbsp;${pageInfo.curPageNo}&nbsp;页</li>
+				<li class="pag-content">总共&nbsp;${pageInfo.totalPageCount}&nbsp;数</li>
+				<li class="pag-content">总共&nbsp;${pageInfo.totalCount}&nbsp;条数据</li>
+			</ul>
+
+			<%--分页按钮--%>
 			<ul class="shop-paging clearfix">
-				<li><a href="javascript:;" class="pag-item">&lt;</a></li>
-				<li><a href="news.jsp" class="pag-item pag-active">1</a></li>
-				<li><a href="javascript:;" class="pag-item">2</a></li>
-				<li><a href="javascript:;" class="pag-item">3</a></li>
-				<li><a href="javascript:;" class="pag-item">4</a></li>
-				<li><a href="javascript:;" class="pag-item">&gt;</a></li>
+				<%--当前页大于一才能点--%>
+				<c:if test="${pageInfo.curPageNo>1}" var="flag">
+					<li><a href="${pageContext.request.contextPath}/newsPageQuery.sn?curPageNo=1" class="pag-item">首</a></li>
+                    <li><a href="${pageContext.request.contextPath}/newsPageQuery.sn?curPageNo=${pageInfo.curPageNo-1}" class="pag-item">&lt;</a></li>
+                </c:if>
+                <c:if test="${!flag}">
+                    <li><span class="pag-item">首</span></li>
+                    <li><span class="pag-item">&lt;</span></li>
+                </c:if>
+
+                <%--当前页小于总页数才能点--%>
+                <c:if test="${pageInfo.curPageNo<pageInfo.totalPageCount}" var="flag2">
+                    <li><a href="${pageContext.request.contextPath}/newsPageQuery.sn?curPageNo=${pageInfo.curPageNo+1}" class="pag-item">&gt;</a></li>
+					<li><a href="${pageContext.request.contextPath}/newsPageQuery.sn?curPageNo=${pageInfo.totalPageCount}" class="pag-item">末</a></li>
+                </c:if>
+				<c:if test="${!flag2}">
+                    <li><span class="pag-item">&gt;</span></li>
+                    <li><span class="pag-item">末</span></li>
+                </c:if>
 			</ul>
 		</div>
 
@@ -155,10 +111,10 @@
 	<script type="text/javascript">
 		//导航当前项切换	
 		$(".nav-item").click(function(){
-			$(this).parent("li").siblings().children().removeClass("nav-active");		
 			//点击对象的父级（li）的兄弟级（li）的子集（a）移除类
-			$(this).addClass("nav-active");												
+			$(this).parent("li").siblings().children().removeClass("nav-active");
 			//给点击对象添加类
+			$(this).addClass("nav-active");
 		});
 	</script>
 </html>

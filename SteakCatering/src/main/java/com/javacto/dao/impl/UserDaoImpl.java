@@ -112,12 +112,13 @@ public class UserDaoImpl implements UserDao {
      * 登录验证
      * @param userName 用户名
      * @param pwd 密码
-     * @return  true登录成功，false登录失败
+     * @return  user对象
      */
     @Override
-    public Boolean login(String userName, String pwd){
-        // 登录验证标志
-        Boolean flag = false;
+    public User login(String userName, String pwd){
+        // 创建user
+        User user = null;
+
 
         // 定义SQL语句
         String sql = "SELECT * FROM steak_user WHERE su_user_name=? AND su_password=?";
@@ -130,11 +131,11 @@ public class UserDaoImpl implements UserDao {
         // 再次验证用户名、密码是否一致
         for (User u : userList){
             if (userName.equals(u.getSuUserName()) && pwd.equals(u.getSuPassword())){
-                flag = true;
+                user = u;
             }
         }
 
-        return flag;
+        return user;
     }
 
 }

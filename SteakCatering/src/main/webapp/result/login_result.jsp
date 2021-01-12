@@ -7,7 +7,7 @@
 <body>
 
     <div>
-        <c:if test="${login}" var="flag">
+        <c:if test="${login!=null}" var="flag">
             <p>恭喜：登录成功，可以开始美食之旅啦！</p>
             <p>正在进入首页...</p>
             <script type="text/javascript">

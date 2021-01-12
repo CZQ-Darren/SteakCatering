@@ -1,5 +1,6 @@
 package com.javacto.utils;
 
+import com.javacto.po.News;
 import com.javacto.po.User;
 import java.io.IOException;
 import java.io.InputStream;
@@ -167,6 +168,55 @@ public class BaseDao {
         }
 
         return userList;
+    }
+
+    /**
+     * News-DQL
+     * @return 新闻列表
+     */
+    public static List<News> queryNewsList(String sql, Object[] obj){
+        List<News> newsList = new ArrayList<News>();
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            // 建立连接
+            conn = BaseDao.getConnection();
+
+            // 处理预编译SQL语句
+            pstm = conn.prepareStatement(sql);
+
+            // 循环给占位符赋值
+            for (int i=0; i<obj.length; i++){
+                pstm.setObject(i+1, obj[i]);
+            }
+
+            // 执行预编译SQL语句
+            rs = pstm.executeQuery();
+
+            // 循环遍历添加进list中
+            while (rs.next()){
+                News news = new News();
+                news.setSnId(rs.getInt("sn_id"));
+                news.setSnTitle(rs.getString("sn_title"));
+                news.setSnContent(rs.getString("sn_content"));
+                news.setSnImg(rs.getString("sn_img"));
+                news.setSnCreateTime(rs.getString("sn_create_time"));
+                news.setSnCreateUser(rs.getString("sn_create_user"));
+                news.setSnUpdateTime(rs.getString("sn_update_time"));
+                news.setSnUpdateUser(rs.getString("sn_update_user"));
+                newsList.add(news);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            // 释放资源
+            BaseDao.closeAll(conn, pstm, rs);
+        }
+
+        return newsList;
     }
 
     /**

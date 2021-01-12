@@ -24,7 +24,7 @@ public class UploadFileBase {
         Map<String, String> map = new HashMap<String, String>();
 
         // 1.得到上传文件的保存目录
-        String savePath = req.getServletContext().getRealPath("WEB-INF/upload");
+        String savePath = req.getServletContext().getRealPath("upload");
 
         // 2.创建File对象，并传递路径
         File file = new File(savePath);
