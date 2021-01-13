@@ -34,4 +34,11 @@ public interface NewsService {
      */
     public News findNewsById(int snId);
 
+    /**
+     * 首页新闻查询，根据创建时间作降序查询
+     * @param news news
+     * @return List<News>
+     */
+    public List<News> indexNewsQuery(News news);
+
 }

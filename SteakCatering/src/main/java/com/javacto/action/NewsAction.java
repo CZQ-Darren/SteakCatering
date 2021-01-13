@@ -38,6 +38,7 @@ public class NewsAction extends HttpServlet {
         // 定义url
         String newsPageQueryUrl = "newsPageQuery";
         String newsConQueryUrl = "newsConQuery";
+        String indexNewsQueryUrl = "indexNewsQuery";
 
         // 获取uri
         String uri = req.getRequestURI();
@@ -115,6 +116,20 @@ public class NewsAction extends HttpServlet {
 
             // 转发
             req.getRequestDispatcher("/news-con.jsp").forward(req, resp);
+
+        }else if (indexNewsQueryUrl.equals(url)){
+            /**
+             * 首页新闻查询
+             */
+
+            // 查询新闻
+            List<News> indexNewsList = newsService.indexNewsQuery(null);
+
+            // 存入req对象中
+            req.setAttribute("indexNewsList", indexNewsList);
+
+            // 转发
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
 
         }
 

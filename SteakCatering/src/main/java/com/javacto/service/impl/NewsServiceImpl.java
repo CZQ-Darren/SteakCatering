@@ -63,4 +63,14 @@ public class NewsServiceImpl implements NewsService {
         return newsDao.findNewsById(snId);
     }
 
+    /**
+     * 首页新闻查询，根据创建时间作降序查询
+     * @param news news
+     * @return List<News>
+     */
+    @Override
+    public List<News> indexNewsQuery(News news){
+        return newsDao.indexNewsQuery(news);
+    }
+
 }

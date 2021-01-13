@@ -139,12 +139,10 @@
 				</a>
 			</div>
 			<ul class="shop-paging clearfix">
+				<li><a href="shop-con.jsp" class="pag-item">首</a></li>
 				<li><a href="shop-con.jsp" class="pag-item">&lt;</a></li>
-				<li><a href="shop-con.jsp" class="pag-item pag-active">1</a></li>
-				<li><a href="javascript:;" class="pag-item">2</a></li>
-				<li><a href="javascript:;" class="pag-item">3</a></li>
-				<li><a href="javascript:;" class="pag-item">4</a></li>
 				<li><a href="javascript:;" class="pag-item">&gt;</a></li>
+				<li><a href="javascript:;" class="pag-item">末</a></li>
 			</ul>
 		</div>
 

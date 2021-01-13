@@ -68,4 +68,19 @@ public class NewsDaoImpl implements NewsDao {
         return news;
     }
 
+    /**
+     * 首页新闻查询，根据创建时间作降序查询
+     * @param news news
+     * @return List<News>
+     */
+    @Override
+    public List<News> indexNewsQuery(News news){
+        // 定义SQL语句
+        String sql = "SELECT * FROM steak_news ORDER BY sn_create_time DESC LIMIT 0,10";
+        // 定义数组
+        Object[] obj = {};
+
+        return BaseDao.queryNewsList(sql, obj);
+    }
+
 }
