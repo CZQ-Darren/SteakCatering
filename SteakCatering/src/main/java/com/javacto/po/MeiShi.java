@@ -1,6 +1,8 @@
 package com.javacto.po;
 
-
+/**
+ * 菜品  po
+ */
 public class MeiShi {
     private int sdDishId;
     private String sdDishName;
