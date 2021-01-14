@@ -1,5 +1,6 @@
 package com.javacto.utils;
 
+import com.javacto.po.About;
 import com.javacto.po.News;
 import com.javacto.po.User;
 import java.io.IOException;
@@ -217,6 +218,54 @@ public class BaseDao {
         }
 
         return newsList;
+    }
+
+    /**
+     * About-DQL
+     * @return 新闻列表
+     */
+    public static List<About> queryAboutList(String sql, Object[] obj){
+        List<About> aboutList = new ArrayList<About>();
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            // 建立连接
+            conn = BaseDao.getConnection();
+
+            // 处理预编译SQL语句
+            pstm = conn.prepareStatement(sql);
+
+            // 循环给占位符赋值
+            for (int i=0; i<obj.length; i++){
+                pstm.setObject(i+1, obj[i]);
+            }
+
+            // 执行预编译SQL语句
+            rs = pstm.executeQuery();
+
+            // 循环遍历添加进list中
+            while (rs.next()){
+                About about = new About();
+                about.setSaId(rs.getInt("sa_id"));
+                about.setSaName(rs.getString("sa_name"));
+                about.setSaPhone(rs.getString("sa_phone"));
+                about.setSaFax(rs.getString("sa_fax"));
+                about.setSaZipCode(rs.getString("sa_zip_code"));
+                about.setSaAddress(rs.getString("sa_address"));
+                about.setSaImg(rs.getString("sa_img"));
+                aboutList.add(about);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            // 释放资源
+            BaseDao.closeAll(conn, pstm, rs);
+        }
+
+        return aboutList;
     }
 
     /**

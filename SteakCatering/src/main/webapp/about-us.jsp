@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%--如果aboutList为空，则跳转到aboutQuery.sa--%>
+<c:if test="${empty aboutList}">
+	<%
+		request.getRequestDispatcher("aboutQuery.sa").forward(request, response);
+	%>
+</c:if>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -37,68 +45,23 @@
 			<li class="bnav-item">&lt;</li>
 			<li class="bnav-item"><a href="about-us.jsp">关于我们</a></li>
 		</ul>
-		
-		<div class="about-wrap">  
-			<dl class="about-dl clearfix">
-				<dt class="about-pic">
-					<img src="${pageContext.request.contextPath}/img/about-pic1.jpg"/>
-				</dt>
-				<dd class="about-txt">
-					<h3 class="about-h">总公司</h3>
-					<p class="about-p">电话：0512-8081 5888</p>
-					<p class="about-p">传真：0512-8081 5566</p>
-					<p class="about-p">邮编：215031</p>
-					<p class="about-p">地址：江苏省苏州市人民路3188号万达广场5幢迪欧大厦</p>
-				</dd>
-			</dl>
-			<dl class="about-dl clearfix">
-				<dt class="about-pic">
-					<img src="${pageContext.request.contextPath}/img/about-pic1.jpg"/>
-				</dt>
-				<dd class="about-txt">
-					<h3 class="about-h">苏州分公司</h3>
-					<p class="about-p">电话：0512-6510 8888 </p>
-					<p class="about-p">传真：0512-6935 6566 </p>
-					<p class="about-p">邮编：215031</p>
-					<p class="about-p">地址：江苏省苏州市人民路3188号万达广场5幢迪欧大厦</p>
-				</dd>
-			</dl>
-			<dl class="about-dl clearfix">
-				<dt class="about-pic">
-					<img src="${pageContext.request.contextPath}/img/about-pic1.jpg"/>
-				</dt>
-				<dd class="about-txt">
-					<h3 class="about-h">苏州分公司</h3>
-					<p class="about-p">电话：0512-6510 8888 </p>
-					<p class="about-p">传真：0512-6935 6566 </p>
-					<p class="about-p">邮编：215031</p>
-					<p class="about-p">地址：江苏省苏州市人民路3188号万达广场5幢迪欧大厦</p>
-				</dd>
-			</dl>
-			<dl class="about-dl clearfix">
-				<dt class="about-pic">
-					<img src="${pageContext.request.contextPath}/img/about-pic1.jpg"/>
-				</dt>
-				<dd class="about-txt">
-					<h3 class="about-h">苏州分公司</h3>
-					<p class="about-p">电话：0512-6510 8888 </p>
-					<p class="about-p">传真：0512-6935 6566 </p>
-					<p class="about-p">邮编：215031</p>
-					<p class="about-p">地址：江苏省苏州市人民路3188号万达广场5幢迪欧大厦</p>
-				</dd>
-			</dl>
-			<dl class="about-dl clearfix">
-				<dt class="about-pic">
-					<img src="${pageContext.request.contextPath}/img/about-pic1.jpg"/>
-				</dt>
-				<dd class="about-txt">
-					<h3 class="about-h">苏州分公司</h3>
-					<p class="about-p">电话：0512-6510 8888 </p>
-					<p class="about-p">传真：0512-6935 6566 </p>
-					<p class="about-p">邮编：215031</p>
-					<p class="about-p">地址：江苏省苏州市人民路3188号万达广场5幢迪欧大厦</p>
-				</dd>
-			</dl>
+
+		<div class="about-wrap">
+			<c:forEach var="about" items="${aboutList}">
+				<dl class="about-dl clearfix">
+					<dt class="about-pic">
+						<img src="${pageContext.request.contextPath}/upload/${about.saImg}"/>
+					</dt>
+					<dd class="about-txt">
+						<h3 class="about-h">${about.saName}</h3>
+						<p class="about-p">电话：${about.saPhone}</p>
+						<p class="about-p">传真：${about.saFax}</p>
+						<p class="about-p">邮编：${about.saZipCode}</p>
+						<p class="about-p">地址：${about.saAddress}</p>
+					</dd>
+				</dl>
+			</c:forEach>
+
 			<p class="about-p2">全国加盟热线及邮箱</p>
             <p class="about-p2">9510 5396</p>
 			<p class="about-p2">E-mail:jiameng@diocoffee.com</p>

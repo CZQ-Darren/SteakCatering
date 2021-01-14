@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%--如果indexNewsList为空，则跳转到indexNewsQuery.sn--%>
+<c:if test="${empty indexNewsList}">
+	<%
+		request.getRequestDispatcher("indexNewsQuery.sn").forward(request, response);
+	%>
+</c:if>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -143,38 +151,12 @@
 					<img src="${pageContext.request.contextPath}/img/pic2.jpg"/>
 				</dt>
 				<dd class="news-dd">
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">贵族食代牛排东莞厚街万达餐厅开业</p>
-						<p class="link-time">2016-09-28</p>
-					</a>
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">贵族食代牛排无锡大成巷餐厅开业</p>
-						<p class="link-time">2016-09-23</p>
-					</a>
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">贵族食代牛排武汉黄陂广场餐厅开业</p>
-						<p class="link-time">2016-09-20</p>
-					</a>
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">贵族食代牛排福州永嘉天地餐厅开业</p>
-						<p class="link-time">2016-09-17</p>
-					</a>
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">贵族食代牛排网络大学第一批“学霸”亮相</p>
-						<p class="link-time">2016-09-14</p>
-					</a>
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">华南市场2016半年度餐厅经理营运会召开</p>
-						<p class="link-time">2016-09-05</p>
-					</a>
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">浙江大区召开餐厅经理营运会议</p>
-						<p class="link-time">2016-09-23</p>
-					</a>
-					<a href="news-con.jsp" class="news-link clearfix">
-						<p class="link-tit">8月15日 贵族食代牛排武汉武商众圆餐厅开业</p>
-						<p class="link-time">2016-09-15</p>
-					</a>
+					<c:forEach var="news" items="${indexNewsList}">
+						<a href="${pageContext.request.contextPath}/newsConQuery.sn?snId=${news.snId}&curPageNo=${pageInfo.curPageNo}" class="news-link clearfix">
+							<p class="link-tit">${news.snTitle}</p>
+							<p class="link-time">${news.snCreateTime}</p>
+						</a>
+					</c:forEach>
 				</dd>
 			</dl>
 		</div>
