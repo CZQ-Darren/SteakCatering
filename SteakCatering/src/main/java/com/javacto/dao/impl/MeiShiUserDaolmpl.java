@@ -14,6 +14,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 菜品 dao层  实现类
+ */
 public class MeiShiUserDaolmpl implements MeiShiUserDao {
 
 
@@ -64,7 +67,7 @@ public class MeiShiUserDaolmpl implements MeiShiUserDao {
                 list.add(meiShi1);
             }
         } catch (Exception e) {
-                e.printStackTrace();
+            e.printStackTrace();
         }finally {
             BaseDao.closeAll(conn, pstm, rs);
         }
@@ -99,5 +102,4 @@ public class MeiShiUserDaolmpl implements MeiShiUserDao {
         }
         return i;
     }
-
 }

@@ -59,7 +59,7 @@ public class StoreFrontAction extends HttpServlet {
         req.setAttribute("sbqPage",pageInfo);
 
         //跳转
-        req.getRequestDispatcher("/shop-con.jsp").forward(req, resp);
+        req.getRequestDispatcher("/MeiShi001.jsp").forward(req, resp);
 
 
     }

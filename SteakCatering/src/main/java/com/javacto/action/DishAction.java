@@ -26,7 +26,7 @@ public class DishAction extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //处理编码格式
-        resp.setContentType("text/html;charset=UTF-8");//响映编码
+        resp.setContentType("text/html;charset=UTF-8");
         //处理请求编码格式
         req.setCharacterEncoding("UTF-8");
 
@@ -36,7 +36,6 @@ public class DishAction extends HttpServlet {
         //获取当前页
         String curPageNoStr = req.getParameter("curPageNo");
         Integer curPageNo=1;//当前页默认设置为1
-        pageInfo.setPageSize(5);
         if(null!=curPageNoStr){
             curPageNo=Integer.parseInt(curPageNoStr);
         }
@@ -48,17 +47,18 @@ public class DishAction extends HttpServlet {
 
         //把当前面存入PageInfo对象,因为调用方法传的是对象
         pageInfo.setCurPageNo(curPageNo);
-        //pageInfo.setPageSize(2);//我现在设置每页只显示2条
+        //默认3条   设置5条
+        //pageInfo.setPageSize(5);
 
         //调用业务代码
         List<MeiShi> sbqList= meiShiUserService.queryAllPage(pageInfo,null);
 
-        //必需要存
-        req.setAttribute("sbqlist",sbqList);
-        // 必需把  pageInfo 存入到HttpServletRequest  因为页面需要获取这个值
+        //
+        req.setAttribute("list",sbqList);
+        // 把  pageInfo 存入到HttpServletRequest
         req.setAttribute("sbqPage",pageInfo);
 
-        //跳转
-        req.getRequestDispatcher("/meishi-con.jsp").forward(req,resp);
+        //转发
+        req.getRequestDispatcher("/MeiShi001.jsp").forward(req,resp);
     }
 }
