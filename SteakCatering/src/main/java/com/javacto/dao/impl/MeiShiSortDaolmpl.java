@@ -14,26 +14,17 @@ import java.util.List;
 
 public class MeiShiSortDaolmpl implements MeiShiDao {
     /**
-     * 分页查询
-     *
-     * @param pageInfo
-     * @param meiShiSort
-     * @return
+     * 菜品分类
      */
     @Override
-    public List<MeiShiSort> sort(PageInfo pageInfo, MeiShiSort meiShiSort) {
+    public List<MeiShiSort> sort(MeiShiSort meiShiSort) {
         List<MeiShiSort> sortsList = new ArrayList<MeiShiSort>();
         Connection conn = BaseDao.getConnection();
-        System.out.println(conn);
         PreparedStatement pstm = null;
         ResultSet rs = null;
         try {
             //处理预编译sql语句
-            pstm = conn.prepareStatement("SELECT * FROM steak_dish_category LIMIT ?,?");
-            int begin = (pageInfo.getCurPageNo() - 1) * pageInfo.getPageSize();
-            int end = pageInfo.getPageSize();
-            pstm.setObject(1, begin);
-            pstm.setObject(2, end);
+            pstm = conn.prepareStatement("SELECT * FROM steak_dish_category");
             //执行预编译sql语句
             rs = pstm.executeQuery();
             //循环遍历
@@ -41,6 +32,7 @@ public class MeiShiSortDaolmpl implements MeiShiDao {
                 MeiShiSort s = new MeiShiSort();
                 s.setSdcId(rs.getInt("sdc_id"));
                 s.setSdcName(rs.getString("sdc_name"));
+                sortsList.add(s);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,13 +44,11 @@ public class MeiShiSortDaolmpl implements MeiShiDao {
 
     /**
      * 查询总条数
-     *
      * @param meiShiSort
      * @return
      */
     @Override
     public int getTotalCount(MeiShiSort meiShiSort) {
-
         int i=0;
         Connection conn = BaseDao.getConnection();
         PreparedStatement pstm = null;
@@ -87,8 +77,8 @@ public class MeiShiSortDaolmpl implements MeiShiDao {
      * @return
      */
     @Override
-    public MeiShiSort findNewsById(int sdcId) {
-        MeiShiSort sort1 = null;
+    public MeiShiSort findMsById(int sdcId) {
+        MeiShiSort meiShiSort = null;
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -104,9 +94,9 @@ public class MeiShiSortDaolmpl implements MeiShiDao {
             rs = pstm.executeQuery();
             //循环遍历
             while (rs.next()) {
-                sort1 = new MeiShiSort();
-                sort1.setSdcId(rs.getInt("sdc_id"));
-                sort1.setSdcName(rs.getString("sdc_name"));
+                meiShiSort = new MeiShiSort();
+                meiShiSort.setSdcId(rs.getInt("sdc_id"));
+                meiShiSort.setSdcName(rs.getString("sdc_name"));
 
             }
         } catch (Exception e) {
@@ -114,6 +104,6 @@ public class MeiShiSortDaolmpl implements MeiShiDao {
         }finally {
             BaseDao.closeAll(conn, pstm, rs);
         }
-        return sort1;
+        return meiShiSort;
     }
 }
