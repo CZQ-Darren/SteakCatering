@@ -1,10 +1,5 @@
 package com.javacto.utils;
 
-/**
- * @author CZQ
- * @date 2020-12-27 17:24
- * Description：
- **/
 public class PageInfo {
     /**
      * curPageNo：当前页，默认设置为1
@@ -13,7 +8,7 @@ public class PageInfo {
      * totalPageCount：总页数
      */
     private int curPageNo = 1;
-    private int pageSize = 2;
+    private int pageSize = 3;
     private int totalCount;
     private int totalPageCount;
 

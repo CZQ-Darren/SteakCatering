@@ -10,6 +10,9 @@ import com.javacto.utils.PageInfo;
 
 import java.util.List;
 
+/**
+ * 菜品  业务层  实现类
+ */
 public class MeiShiUserServicelmpl implements MeiShiUserService {
 
     //调用dao层

@@ -7,6 +7,9 @@ import com.javacto.utils.PageInfo;
 
 import java.util.List;
 
+/**
+ * 菜品  dao层接口
+ */
 public interface MeiShiUserDao {
 
 
