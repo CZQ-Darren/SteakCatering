@@ -74,7 +74,7 @@
 
 			<ul class="pag clearfix">
 				<li class="pag-content">当前第&nbsp;${pageInfo.curPageNo}&nbsp;页</li>
-				<li class="pag-content">总共&nbsp;${pageInfo.totalPageCount}&nbsp;数</li>
+				<li class="pag-content">总共&nbsp;${pageInfo.totalPageCount}&nbsp;页</li>
 				<li class="pag-content">总共&nbsp;${pageInfo.totalCount}&nbsp;条数据</li>
 			</ul>
 

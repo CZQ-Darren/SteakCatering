@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface MeiShiDao {
     /**
-     * 菜品分类分页查询
+     * 菜品分类
      */
-    public List<MeiShiSort> sort(PageInfo pageInfo, MeiShiSort meiShiSort);
+    public List<MeiShiSort> sort(MeiShiSort meiShiSort);
 
     /**
      * 菜品分类总条数
@@ -20,5 +20,5 @@ public interface MeiShiDao {
     /**
      * 根据ID查询
      */
-    public MeiShiSort findNewsById(int sdcId);
+    public MeiShiSort findMsById(int sdcId);
 }

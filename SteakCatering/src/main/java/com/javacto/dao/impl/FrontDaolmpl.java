@@ -15,7 +15,6 @@ import java.util.List;
 public class FrontDaolmpl implements FrontDao {
     /**
      * 分页查询
-     *
      * @param pageInfo
      * @param front
      * @return

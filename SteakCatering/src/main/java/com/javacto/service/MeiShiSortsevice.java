@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface MeiShiSortsevice {
     /**
-     * 菜品分类分页查询
+     * 菜品分类
      */
-    public List<MeiShiSort> queryAllPage(PageInfo pageInfo, MeiShiSort meiShiSort);
+    public List<MeiShiSort> sort(MeiShiSort meiShiSort);
 
     /**
      * 菜品分类总条数
@@ -17,7 +17,7 @@ public interface MeiShiSortsevice {
     public int getTotalCount(MeiShiSort meiShiSort);
 
     /**
-     * id查询总条数
+     * 根据ID查询
      */
     public MeiShiSort findMsById(int sdcId);
 }

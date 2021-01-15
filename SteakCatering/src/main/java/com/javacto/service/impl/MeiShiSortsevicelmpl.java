@@ -11,19 +11,20 @@ import java.util.List;
 public class MeiShiSortsevicelmpl implements MeiShiSortsevice {
 
     //调用dao层
-
     private MeiShiDao s = new MeiShiSortDaolmpl();
 
     /**
-     * 菜品分类分页查询
+     * 菜品分类查询
      */
-    public List<MeiShiSort> queryAllPage(PageInfo pageInfo, MeiShiSort meiShiSort) {
-        return s.sort(pageInfo, meiShiSort);
+    @Override
+    public List<MeiShiSort> sort(MeiShiSort meiShiSort) {
+        return s.sort(meiShiSort);
     }
 
     /**
      * 菜品分类总条数
      */
+    @Override
     public int getTotalCount(MeiShiSort meiShiSort) {
         return s.getTotalCount(meiShiSort);
     }
@@ -31,7 +32,8 @@ public class MeiShiSortsevicelmpl implements MeiShiSortsevice {
     /**
      * id查询分类总条数
      */
+    @Override
     public MeiShiSort findMsById(int sdcId) {
-        return s.findNewsById(sdcId);
+        return s.findMsById(sdcId);
     }
 }

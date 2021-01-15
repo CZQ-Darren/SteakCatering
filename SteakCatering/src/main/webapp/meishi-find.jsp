@@ -1,23 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%--如果meiShiList没有数据，跳转到dishPageQuery.sd--%>
-<c:if test="${empty meiShiList}">
-	<%
-		request.getRequestDispatcher("/dishPageQuery.sd").forward(request, response);
-	%>
-</c:if>
-<%--如果meiShiSortList没有数据，跳转到dishPageQuery.sd--%>
-<c:if test="${empty meiShiSortList}">
-	<%
-		request.getRequestDispatcher("/dishPageQuery.sd").forward(request, response);
-	%>
-</c:if>
-
 <html>
 	<head>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8">
-		<title>美食系列</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>美食-搜索结果</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 	</head>
@@ -51,13 +37,10 @@
 			<li class="bnav-item">&lt;</li>
 			<li class="bnav-item"><a href="meishi.jsp">美食系列</a></li>
 			<li class="bnav-item">&lt;</li>
-			<li class="bnav-item"><a href="javascript:;">全部菜品</a></li>
+			<li class="bnav-item"><a href="javascript:;">搜索结果</a></li>
 		</ul>
 		<div class="clearfix table-wrap" id="tab-span">
-			<span class="table-item table-active">全部菜品</span>
-			<c:forEach var="sort" items="${meiShiSortList}">
-				<span class="table-item">${sort.sdcName}</span>
-			</c:forEach>
+			<span class="table-item table-active">搜索结果</span>
 			<div class="search clearfix">
 				<form action="${pageContext.request.contextPath}/findDishByName.sd" method="post" id="dishFind">
 					<input class="inp-txt" id="dishName" type="text" name="dishName" value="输入关键字"
@@ -68,66 +51,55 @@
 			</div>
 		</div>
 		<div id="table-div">
-			<%--全部菜品展示--%>
-			<div class="table-pic table-show clearfix">
-				<c:forEach var="dish" items="${meiShiList}">
-					<a href="${pageContext.request.contextPath}/findDishById.sd?sdDishId=${dish.sdDishId}&curPageNo=${pageInfo.curPageNo}" class="ms-wrap ms-right">
+			<%--判断是否找到相关结果--%>
+			<c:if test="${not empty dishFindList}" var="findFlag">
+				<%--搜索结果展示--%>
+				<div class="table-pic table-show clearfix">
+					<c:forEach var="dish" items="${dishFindList}">
+						<a href="${pageContext.request.contextPath}/findDishById.sd?sdDishId=${dish.sdDishId}&curPageNo=${pageInfo.curPageNo}" class="ms-wrap ms-right">
 					<span class="ms-pic">
 						<img src="${pageContext.request.contextPath}/upload/${dish.sdImg}" alt="" />
 					</span>
-						<h2 class="ms-tit">${dish.sdDishName}</h2>
-						<p class="ms-txt">价格：${dish.sdDishPrice}元</p>
-					</a>
-				</c:forEach>
-
-                <%--分页--%>
-                <ul class="pag clearfix">
-                    <li class="pag-content">当前第&nbsp;${pageInfo.curPageNo}&nbsp;页</li>
-                    <li class="pag-content">总共&nbsp;${pageInfo.totalPageCount}&nbsp;页</li>
-                    <li class="pag-content">总共&nbsp;${pageInfo.totalCount}&nbsp;条数据</li>
-                </ul>
-
-                <%--分页按钮--%>
-                <ul class="shop-paging clearfix">
-                    <%--当前页大于一才能点--%>
-                    <c:if test="${pageInfo.curPageNo>1}" var="flag">
-                        <li><a href="${pageContext.request.contextPath}/dishPageQuery.sd?curPageNo=1" class="pag-item">首</a></li>
-                        <li><a href="${pageContext.request.contextPath}/dishPageQuery.sd?curPageNo=${pageInfo.curPageNo-1}" class="pag-item">&lt;</a></li>
-                    </c:if>
-                    <c:if test="${!flag}">
-                        <li><span class="pag-item">首</span></li>
-                        <li><span class="pag-item">&lt;</span></li>
-                    </c:if>
-
-                    <%--当前页小于总页数才能点--%>
-                    <c:if test="${pageInfo.curPageNo<pageInfo.totalPageCount}" var="flag2">
-                        <li><a href="${pageContext.request.contextPath}/dishPageQuery.sd?curPageNo=${pageInfo.curPageNo+1}" class="pag-item">&gt;</a></li>
-                        <li><a href="${pageContext.request.contextPath}/dishPageQuery.sd?curPageNo=${pageInfo.totalPageCount}" class="pag-item">末</a></li>
-                    </c:if>
-                    <c:if test="${!flag2}">
-                        <li><span class="pag-item">&gt;</span></li>
-                        <li><span class="pag-item">末</span></li>
-                    </c:if>
-                </ul>
-			</div>
-
-            <%--分类菜品展示--%>
-			<c:forEach var="sort" items="${meiShiSortList}">
-				<div class="table-pic clearfix">
-					<c:forEach var="dish" items="${dishAllList}">
-						<c:if test="${dish.sdcId==sort.sdcId}">
-							<a href="${pageContext.request.contextPath}/findDishById.sd?sdDishId=${dish.sdDishId}&curPageNo=${pageInfo.curPageNo}" class="ms-wrap ms-right">
-								<span class="ms-pic">
-									<img src="${pageContext.request.contextPath}/upload/${dish.sdImg}" alt="" />
-								</span>
-								<h2 class="ms-tit">${dish.sdDishName}</h2>
-								<p class="ms-txt">价格：${dish.sdDishPrice}元</p>
-							</a>
-						</c:if>
+							<h2 class="ms-tit">${dish.sdDishName}</h2>
+							<p class="ms-txt">价格：${dish.sdDishPrice}元</p>
+						</a>
 					</c:forEach>
 				</div>
-			</c:forEach>
 
+				<%--分页--%>
+				<ul class="pag clearfix">
+					<li class="pag-content">当前第&nbsp;${pageInfo.curPageNo}&nbsp;页</li>
+					<li class="pag-content">总共&nbsp;${pageInfo.totalPageCount}&nbsp;页</li>
+					<li class="pag-content">总共&nbsp;${pageInfo.totalCount}&nbsp;条数据</li>
+				</ul>
+
+				<%--分页按钮--%>
+				<ul class="shop-paging clearfix">
+						<%--当前页大于一才能点--%>
+					<c:if test="${pageInfo.curPageNo>1}" var="flag">
+						<li><a href="${pageContext.request.contextPath}/findDishByName.sd?curPageNo=1&dishName=${dishName}" class="pag-item">首</a></li>
+						<li><a href="${pageContext.request.contextPath}/findDishByName.sd?curPageNo=${pageInfo.curPageNo-1}&dishName=${dishName}" class="pag-item">&lt;</a></li>
+					</c:if>
+					<c:if test="${!flag}">
+						<li><span class="pag-item">首</span></li>
+						<li><span class="pag-item">&lt;</span></li>
+					</c:if>
+
+						<%--当前页小于总页数才能点--%>
+					<c:if test="${pageInfo.curPageNo<pageInfo.totalPageCount}" var="flag2">
+						<li><a href="${pageContext.request.contextPath}/findDishByName.sd?curPageNo=${pageInfo.curPageNo+1}&dishName=${dishName}" class="pag-item">&gt;</a></li>
+						<li><a href="${pageContext.request.contextPath}/findDishByName.sd?curPageNo=${pageInfo.totalPageCount}&dishName=${dishName}" class="pag-item">末</a></li>
+					</c:if>
+					<c:if test="${!flag2}">
+						<li><span class="pag-item">&gt;</span></li>
+						<li><span class="pag-item">末</span></li>
+					</c:if>
+				</ul>
+			</c:if>
+			<%--没有找到，给出提示--%>
+			<c:if test="${!findFlag}">
+				<div class="table-pic table-show clearfix" style="margin-top: 30px">查询不到相关结果！</div>
+			</c:if>
 		</div>
 
 		<%--调用封装的foot页面--%>
@@ -140,9 +112,9 @@
 	<script type="text/javascript">
 		//导航当前项切换	
 		$(".nav-item").click(function(){
-			$(this).parent("li").siblings().children().removeClass("nav-active");		
+			$(this).parent("li").siblings().children().removeClass("nav-active");
 			//点击对象的父级（li）的兄弟级（li）的子集（a）移除类
-			$(this).addClass("nav-active");												
+			$(this).addClass("nav-active");
 			//给点击对象添加类
 		});
 		//美食系列当前项切换
