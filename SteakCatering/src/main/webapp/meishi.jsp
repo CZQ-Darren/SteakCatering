@@ -50,8 +50,6 @@
 			<li class="bnav-item"><a href="index.jsp">首页</a></li>
 			<li class="bnav-item">&lt;</li>
 			<li class="bnav-item"><a href="meishi.jsp">美食系列</a></li>
-			<li class="bnav-item">&lt;</li>
-			<li class="bnav-item"><a href="javascript:;">全部菜品</a></li>
 		</ul>
 		<div class="clearfix table-wrap" id="tab-span">
 			<span class="table-item table-active">全部菜品</span>
@@ -72,9 +70,9 @@
 			<div class="table-pic table-show clearfix">
 				<c:forEach var="dish" items="${meiShiList}">
 					<a href="${pageContext.request.contextPath}/findDishById.sd?sdDishId=${dish.sdDishId}&curPageNo=${pageInfo.curPageNo}" class="ms-wrap ms-right">
-					<span class="ms-pic">
-						<img src="${pageContext.request.contextPath}/upload/${dish.sdImg}" alt="" />
-					</span>
+						<span class="ms-pic">
+							<img src="${pageContext.request.contextPath}/upload/${dish.sdImg}" alt="" />
+						</span>
 						<h2 class="ms-tit">${dish.sdDishName}</h2>
 						<p class="ms-txt">价格：${dish.sdDishPrice}元</p>
 					</a>

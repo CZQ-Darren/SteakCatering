@@ -1,29 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%--如果storeList没有数据，跳转到storePageQuery.ss--%>
-<c:if test="${empty storeList}">
-	<%
-		request.getRequestDispatcher("/storePageQuery.ss").forward(request, response);
-	%>
-</c:if>
-<%--如果storeCategoryList没有数据，跳转到storePageQuery.ss--%>
-<c:if test="${empty storeCategoryList}">
-	<%
-		request.getRequestDispatcher("/storePageQuery.ss").forward(request, response);
-	%>
-</c:if>
-<%--如果storePageQueryList没有数据，跳转到storePageQuery.ss--%>
-<c:if test="${empty storePageQueryList}">
-	<%
-		request.getRequestDispatcher("/storePageQuery.ss").forward(request, response);
-	%>
-</c:if>
-
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>店面展示</title>
+		<title>店面-搜索结果</title>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css"/>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css"/>
 	</head>
@@ -56,12 +36,11 @@
 			<li class="bnav-item"><a href="index.jsp">首页</a></li>
 			<li class="bnav-item">&lt;</li>
 			<li class="bnav-item"><a href="shop.jsp">店面展示</a></li>
+			<li class="bnav-item">&lt;</li>
+			<li class="bnav-item"><a href="javascript:;">搜索结果</a></li>
 		</ul>
 		<div class="clearfix table-wrap" id="tab-span">
-			<span class="table-item table-active">全部店面</span>
-			<c:forEach var="storeCategory" items="${storeCategoryList}">
-				<span class="table-item">${storeCategory.sscName}</span>
-			</c:forEach>
+			<span class="table-item table-active">搜索结果</span>
 			<div class="search clearfix">
 				<form action="${pageContext.request.contextPath}/findStoreByName.ss" method="post" id="storeFind">
 					<input class="inp-txt" id="storeName" type="text" name="storeName" value="输入关键字"
@@ -72,15 +51,19 @@
 			</div>
 		</div>
 		<div id="table-div">
-			<div class="table-pic table-show clearfix">
-				<c:forEach var="storePage" items="${storePageQueryList}">
-					<a href="${pageContext.request.contextPath}/findStoreById.ss?storeId=${storePage.ssStoreId}&curPageNo=${pageInfo.curPageNo}" class="shop-wrap shop-right">
-					<span class="shop-pic">
-						<img src="${pageContext.request.contextPath}/upload/${storePage.ssImg}" alt="" />
-					</span>
-						<p class="shop-tit">${storePage.ssStoreName}</p>
-					</a>
-				</c:forEach>
+			<%--判断是否找到相关结果--%>
+			<c:if test="${not empty storeFindList}" var="storeFindFlag">
+				<%--搜索结果展示--%>
+				<div class="table-pic table-show clearfix">
+					<c:forEach var="store" items="${storeFindList}">
+						<a href="${pageContext.request.contextPath}/findStoreById.ss?storeId=${store.ssStoreId}&curPageNo=${pageInfo.curPageNo}" class="shop-wrap shop-right">
+							<span class="shop-pic">
+								<img src="${pageContext.request.contextPath}/upload/${store.ssImg}" alt="" />
+							</span>
+							<p class="shop-tit">${store.ssStoreName}</p>
+						</a>
+					</c:forEach>
+				</div>
 
 				<%--分页--%>
 				<ul class="pag clearfix">
@@ -91,42 +74,31 @@
 
 				<%--分页按钮--%>
 				<ul class="shop-paging clearfix">
-					<%--当前页大于一才能点--%>
+						<%--当前页大于一才能点--%>
 					<c:if test="${pageInfo.curPageNo>1}" var="flag">
-						<li><a href="${pageContext.request.contextPath}/storePageQuery.ss?curPageNo=1" class="pag-item">首</a></li>
-						<li><a href="${pageContext.request.contextPath}/storePageQuery.ss?curPageNo=${pageInfo.curPageNo-1}" class="pag-item">&lt;</a></li>
+						<li><a href="${pageContext.request.contextPath}/findStoreByName.ss?curPageNo=1&storeName=${storeName}" class="pag-item">首</a></li>
+						<li><a href="${pageContext.request.contextPath}/findStoreByName.ss?curPageNo=${pageInfo.curPageNo-1}&storeName=${storeName}" class="pag-item">&lt;</a></li>
 					</c:if>
 					<c:if test="${!flag}">
 						<li><span class="pag-item">首</span></li>
 						<li><span class="pag-item">&lt;</span></li>
 					</c:if>
 
-					<%--当前页小于总页数才能点--%>
+						<%--当前页小于总页数才能点--%>
 					<c:if test="${pageInfo.curPageNo<pageInfo.totalPageCount}" var="flag2">
-						<li><a href="${pageContext.request.contextPath}/storePageQuery.ss?curPageNo=${pageInfo.curPageNo+1}" class="pag-item">&gt;</a></li>
-						<li><a href="${pageContext.request.contextPath}/storePageQuery.ss?curPageNo=${pageInfo.totalPageCount}" class="pag-item">末</a></li>
+						<li><a href="${pageContext.request.contextPath}/findStoreByName.ss?curPageNo=${pageInfo.curPageNo+1}&storeName=${storeName}" class="pag-item">&gt;</a></li>
+						<li><a href="${pageContext.request.contextPath}/findStoreByName.ss?curPageNo=${pageInfo.totalPageCount}&storeName=${storeName}" class="pag-item">末</a></li>
 					</c:if>
 					<c:if test="${!flag2}">
 						<li><span class="pag-item">&gt;</span></li>
 						<li><span class="pag-item">末</span></li>
 					</c:if>
 				</ul>
-			</div>
-
-			<c:forEach var="storeCategory" items="${storeCategoryList}">
-				<div class="table-pic clearfix">
-					<c:forEach var="store" items="${storeList}">
-						<c:if test="${store.sscId==storeCategory.sscId}">
-							<a href="${pageContext.request.contextPath}/findStoreById.ss?storeId=${store.ssStoreId}&curPageNo=${pageInfo.curPageNo}" class="shop-wrap shop-right">
-								<span class="shop-pic">
-									<img src="${pageContext.request.contextPath}/upload/${store.ssImg}" alt="" />
-								</span>
-								<p class="shop-tit">${store.ssStoreName}</p>
-							</a>
-						</c:if>
-					</c:forEach>
-				</div>
-			</c:forEach>
+			</c:if>
+			<%--没有找到，给出提示--%>
+			<c:if test="${!storeFindFlag}">
+				<div class="table-pic table-show clearfix" style="margin-top: 30px">查询不到相关结果！</div>
+			</c:if>
 		</div>
 
 		<%--调用封装的foot页面--%>
