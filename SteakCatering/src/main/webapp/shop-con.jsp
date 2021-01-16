@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%--如果store没有数据，跳转到findStoreById.ss--%>
+<c:if test="${empty store}">
+	<%
+		request.getRequestDispatcher("/findStoreById.ss").forward(request, response);
+	%>
+</c:if>
+
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -35,23 +43,22 @@
 		<ul class="breadnav clearfix">
 			<li class="bnav-item"><a href="index.jsp">首页</a></li>
 			<li class="bnav-item">&lt;</li>
-			<li class="bnav-item"><a href="shop.jsp">店面展示</a></li>
+			<li class="bnav-item"><a href="shop.jsp">店面详情</a></li>
 			<li class="bnav-item">&lt;</li>
-			<li class="bnav-item"><a href="javascript:;">北京店</a></li>
+			<li class="bnav-item"><a href="javascript:;">${store.ssStoreName}</a></li>
 		</ul>
 		
 		<div class="shop-conwrap">
-			<h1 class="shop-contit">北京朝阳区店</h1>
+			<h1 class="shop-contit">${store.ssStoreName}</h1>
 			<span class="shop-conpic">
-				<img src="${pageContext.request.contextPath}/img/shop-pic7.jpg"/>
+				<img src="${pageContext.request.contextPath}/upload/${store.ssImg}"/>
 			</span>
-			<p class="shop-font14"><span class="shop-font18">特色菜品：</span>波尔多酒鹅肝批、罐焖牛肉、勃艮第少司焗蜗牛、奶油蘑菇汤、牛扒、羊排、鹅肝酱、龙虾</p>
-			<p class="shop-font14"><span class="shop-font18">营业时间：</span>11:00-22:00 人均消费： 300元左右 包间数量： 3</p>
-			<p class="shop-font14"><span class="shop-font18">停车泊位：</span>有停车位 支付方式： 现金、刷卡</p>
-			<p class="shop-font14"><span class="shop-font18">餐厅地址：</span>北京市朝阳区朝阳门西大街二号(朝阳门饭店2层)</p>
-			<p class="shop-font14"><span class="shop-font18">餐厅标签：</span>法国菜,有包间,有车位,可刷卡,崇文区,地铁1号线,地铁2号线,地铁5号线,崇文门外大街,前门总医院,天坛,祈年殿,龙潭湖公园,北京体育馆,中央戏剧学院,崇文区儿童医院,新世界商场,北京站,新闻大厦,北京饭店,北京市政府,东交民巷,天安门,朋友聚会,家人就餐,谈情约会</p>
-			
-			<a href="shop.jsp" class="shop-icon">返回列表页</a>
+			<p class="shop-font14"><span class="shop-font18">特色菜品：</span>${storeContent[0]}</p>
+			<p class="shop-font14"><span class="shop-font18">营业时间：</span>${storeContent[1]}</p>
+			<p class="shop-font14"><span class="shop-font18">停车泊位：</span>${storeContent[2]}</p>
+			<p class="shop-font14"><span class="shop-font18">餐厅地址：</span>${storeContent[3]}</p>
+			<p class="shop-font14"><span class="shop-font18">餐厅标签：</span>${storeContent[4]}</p>
+			<a href="${pageContext.request.contextPath}/storePageQuery.ss?curPageNo=${curPageNo}" class="shop-icon">返回列表页</a>
 		</div>
 
 		<%--调用封装的foot页面--%>

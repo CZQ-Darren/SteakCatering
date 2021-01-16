@@ -1,8 +1,7 @@
 package com.javacto.utils;
 
-import com.javacto.po.About;
-import com.javacto.po.News;
-import com.javacto.po.User;
+import com.javacto.po.*;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -266,6 +265,95 @@ public class BaseDao {
         }
 
         return aboutList;
+    }
+
+    /**
+     * Store-DQL
+     * @return 店面列表
+     */
+    public static List<Store> queryStoreList(String sql, Object[] obj){
+        List<Store> storeList = new ArrayList<Store>();
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            // 建立连接
+            conn = BaseDao.getConnection();
+
+            // 处理预编译SQL语句
+            pstm = conn.prepareStatement(sql);
+
+            // 循环给占位符赋值
+            for (int i=0; i<obj.length; i++){
+                pstm.setObject(i+1, obj[i]);
+            }
+
+            // 执行预编译SQL语句
+            rs = pstm.executeQuery();
+
+            // 循环遍历添加进list中
+            while (rs.next()){
+                Store store = new Store();
+                store.setSsStoreId(rs.getInt("ss_store_id"));
+                store.setSsStoreName(rs.getString("ss_store_name"));
+                store.setSsContent(rs.getString("ss_content"));
+                store.setSsImg(rs.getString("ss_img"));
+                store.setSscId(rs.getInt("ssc_id"));
+                storeList.add(store);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            // 释放资源
+            BaseDao.closeAll(conn, pstm, rs);
+        }
+
+        return storeList;
+    }
+
+    /**
+     * StoreCategory-DQL
+     * @return 店面分类列表
+     */
+    public static List<StoreCategory> queryStoreCategoryList(String sql, Object[] obj){
+        List<StoreCategory> storeCategoryList = new ArrayList<StoreCategory>();
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+
+        try {
+            // 建立连接
+            conn = BaseDao.getConnection();
+
+            // 处理预编译SQL语句
+            pstm = conn.prepareStatement(sql);
+
+            // 循环给占位符赋值
+            for (int i=0; i<obj.length; i++){
+                pstm.setObject(i+1, obj[i]);
+            }
+
+            // 执行预编译SQL语句
+            rs = pstm.executeQuery();
+
+            // 循环遍历添加进list中
+            while (rs.next()){
+                StoreCategory storeCategory = new StoreCategory();
+                storeCategory.setSscId(rs.getInt("ssc_id"));
+                storeCategory.setSscName(rs.getString("ssc_name"));
+                storeCategoryList.add(storeCategory);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            // 释放资源
+            BaseDao.closeAll(conn, pstm, rs);
+        }
+
+        return storeCategoryList;
     }
 
     /**

@@ -750,7 +750,7 @@ i.user{
 	margin-top: 60px;
 }
 .shop-right{
-	margin-right: 30px;
+	margin-right: 20px;
 }
 .shop-tit{
 	font-size: 24px;
@@ -811,6 +811,10 @@ i.user{
 	display: block;
 	width: 852px;
 	margin: 76px auto 0;
+}
+.shop-conpic > img{
+	width: 850px;
+	height: 416px;
 }
 .shop-font18{
 	font-size: 18px;

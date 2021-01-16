@@ -109,7 +109,7 @@ public class DishAction extends HttpServlet {
 
             // 获取当前页
             String curPageNoStr = req.getParameter("curPageNo");
-            // 默认设置菜品id为1
+            // 默认设置当前页为1
             int curPageNo = 1;
             if (!"".equals(curPageNoStr) && curPageNoStr!=null){
                 curPageNo = Integer.parseInt(curPageNoStr);
@@ -159,9 +159,6 @@ public class DishAction extends HttpServlet {
             req.setAttribute("pageInfo", pageInfo);
             // 把dishFindList集合存入req对象中
             req.setAttribute("dishFindList", dishFindList);
-
-            System.out.println(dishName);
-            System.out.println(dishFindList);
 
             // 转发
             req.getRequestDispatcher("/meishi-find.jsp").forward(req, resp);
